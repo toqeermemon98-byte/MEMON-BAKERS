@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: memon-bakers-api
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build --workspace server
+    startCommand: npm run start --workspace server
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: CLIENT_URL
+        sync: false
